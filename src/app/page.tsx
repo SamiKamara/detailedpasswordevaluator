@@ -26,6 +26,44 @@ export default function Home() {
     }
   };
 
+  const calculateAverageScore = (password: string): { feedback: string; score: number } => {
+    let totalScore = 0;
+    let count = 0;
+
+    const length = password.length;
+    if (length < 5) {
+      totalScore += 1;
+    } else if (length <= 10) {
+      totalScore += 2;
+    } else {
+      totalScore += 3;
+    }
+    count++;
+
+    const numberCount = (password.match(/\d/g) || []).length;
+    if (numberCount === 0) {
+      totalScore += 1;
+    } else if (numberCount < 3) {
+      totalScore += 2;
+    } else {
+      totalScore += 3;
+    }
+    count++;
+
+    const averageScore = totalScore / count;
+    let feedback;
+
+    if (averageScore < 1.5) {
+      feedback = "Poor";
+    } else if (averageScore < 2.5) {
+      feedback = "Decent";
+    } else {
+      feedback = "Strong";
+    }
+
+    return { feedback: `Overall score: ${averageScore.toFixed(1)} (${feedback})`, score: averageScore };
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex flex-col items-center space-y-6">
@@ -45,9 +83,15 @@ export default function Home() {
           <>
             <p className="text-sm text-gray-600 text-center">
               <br />
-              Feedback: 
-              <br />
-              <br />
+              Feedback:
+            </p>
+            <p className="text-sm text-gray-600 text-center">
+              {(() => {
+                const { feedback } = calculateAverageScore(password);
+                return feedback;
+              })()}
+            </p>
+            <p className="text-sm text-gray-600 text-center">
               {getPasswordLengthFeedback(password)}
             </p>
             <p className="text-sm text-gray-600 text-center">
