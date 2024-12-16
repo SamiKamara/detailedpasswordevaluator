@@ -7,22 +7,22 @@ export default function Home() {
   const getPasswordLengthFeedback = (password: string): string => {
     const length = password.length;
     if (length < 5) {
-      return `Too short (${length} characters)`;
+      return `Length: ${length} characters (Poor)`;
     } else if (length <= 10) {
-      return `Medium length (${length} characters)`;
+      return `Length: ${length} characters (Decent)`;
     } else {
-      return `Good length (${length} characters)`;
+      return `Length: ${length} characters (Strong)`;
     }
   };
 
   const getPasswordNumberFeedback = (password: string): string => {
     const numberCount = (password.match(/\d/g) || []).length;
     if (numberCount === 0) {
-      return "No numbers: Poor";
+      return "Numbers: No numbers (Poor)";
     } else if (numberCount < 3) {
-      return "Contains numbers: Medium";
+      return "Numbers: Contains numbers (Decent)";
     } else {
-      return "Multiple numbers: Excellent";
+      return "Numbers: Multiple numbers (Strong)";
     }
   };
 
@@ -47,7 +47,7 @@ export default function Home() {
               <br />
               Feedback: 
               <br />
-              <br /> 
+              <br />
               {getPasswordLengthFeedback(password)}
             </p>
             <p className="text-sm text-gray-600 text-center">
