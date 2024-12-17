@@ -26,9 +26,19 @@ export default function Home() {
     }
   };
 
+  const getPasswordUppercaseFeedback = (password: string): string => {
+    const uppercaseCount = (password.match(/[A-Z]/g) || []).length;
+    if (uppercaseCount === 0) {
+      return "Uppercase letters: No uppercase letters (Poor)";
+    } else if (uppercaseCount === 1) {
+      return "Uppercase letters: One uppercase letter (Decent)";
+    } else {
+      return `Uppercase letters: Multiple uppercase letters (Strong)`;
+    }
+  };
+
   const calculateAverageScore = (password: string): { feedback: string; score: number } => {
     let totalScore = 0;
-    let count = 0;
 
     const length = password.length;
     if (length < 5) {
@@ -38,7 +48,6 @@ export default function Home() {
     } else {
       totalScore += 3;
     }
-    count++;
 
     const numberCount = (password.match(/\d/g) || []).length;
     if (numberCount === 0) {
@@ -48,11 +57,20 @@ export default function Home() {
     } else {
       totalScore += 3;
     }
-    count++;
 
-    const averageScore = totalScore / count;
+    const uppercaseCount = (password.match(/[A-Z]/g) || []).length;
+    if (uppercaseCount === 0) {
+      totalScore += 1;
+    } else if (uppercaseCount === 1) {
+      totalScore += 2;
+    } else {
+      totalScore += 3;
+    }
+
+    const totalCriteria = 3;
+    const averageScore = totalScore / totalCriteria;
+
     let feedback;
-
     if (averageScore < 1.5) {
       feedback = "Poor";
     } else if (averageScore < 2.5) {
@@ -96,6 +114,9 @@ export default function Home() {
             </p>
             <p className="text-sm text-gray-600 text-center">
               {getPasswordNumberFeedback(password)}
+            </p>
+            <p className="text-sm text-gray-600 text-center">
+              {getPasswordUppercaseFeedback(password)}
             </p>
           </>
         )}
