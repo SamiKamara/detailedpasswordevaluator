@@ -91,8 +91,8 @@ export default function Home() {
       />
 
       <div className="flex flex-col items-center space-y-6">
-        <p className="text-lg text-gray-300 text-center max-w-md">
-          Enter your candidate password below to get an assessment.
+        <p className="text-lg text-gray-300 text-center mx-5 md:mx-0 max-w-md">
+        Enter your candidate password below to get an assessment.
         </p>
         <input
           type="text"
