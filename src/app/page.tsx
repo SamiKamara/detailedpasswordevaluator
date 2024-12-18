@@ -84,9 +84,15 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
+      <img
+        src="/logo.svg"
+        alt="Logo"
+        className="w-64 h-64 mb-6"
+      />
+
       <div className="flex flex-col items-center space-y-6">
-        <p className="text-lg text-gray-700 text-center max-w-md">
-          This is a password strength evaluation system. Enter your candidate password below to get an assessment.
+        <p className="text-lg text-gray-300 text-center max-w-md">
+          Enter your candidate password below to get an assessment.
         </p>
         <input
           type="text"
@@ -99,23 +105,23 @@ export default function Home() {
       <div className="h-12 mt-4 flex flex-col items-center space-y-2">
         {password && (
           <>
-            <p className="text-sm text-gray-600 text-center">
+            <p className="text-sm text-gray-300 text-center">
               <br />
               Feedback:
             </p>
-            <p className="text-sm text-gray-600 text-center">
+            <p className="text-sm text-gray-300 text-center">
               {(() => {
                 const { feedback } = calculateAverageScore(password);
                 return feedback;
               })()}
             </p>
-            <p className="text-sm text-gray-600 text-center">
+            <p className="text-sm text-gray-300 text-center">
               {getPasswordLengthFeedback(password)}
             </p>
-            <p className="text-sm text-gray-600 text-center">
+            <p className="text-sm text-gray-300 text-center">
               {getPasswordNumberFeedback(password)}
             </p>
-            <p className="text-sm text-gray-600 text-center">
+            <p className="text-sm text-gray-300 text-center">
               {getPasswordUppercaseFeedback(password)}
             </p>
           </>
