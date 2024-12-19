@@ -29,11 +29,11 @@ export default function Home() {
   const getPasswordUppercaseFeedback = (password: string): string => {
     const uppercaseCount = (password.match(/[A-Z]/g) || []).length;
     if (uppercaseCount === 0) {
-      return "Uppercase letters: No uppercase letters (Poor)";
+      return "Letters: No uppercase (Poor)";
     } else if (uppercaseCount === 1) {
-      return "Uppercase letters: One uppercase letter (Decent)";
+      return "Letters: One uppercase (Decent)";
     } else {
-      return `Uppercase letters: Multiple uppercase letters (Strong)`;
+      return `Letters: Multiple uppercase (Strong)`;
     }
   };
 
