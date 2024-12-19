@@ -87,7 +87,7 @@ export default function Home() {
       <img
         src="/logo.svg"
         alt="Logo"
-        className="w-64 h-64 mb-6"
+        className="w-64 h-64 mb-2 object-contain"
       />
 
       <div className="flex flex-col items-center space-y-6">
